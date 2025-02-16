@@ -24,11 +24,8 @@ jobs:
         pip install -r requirements.txt  # Installer nødvendige pakker hvis du har en requirements.txt
 
     - name: Create Lambda ZIP file
-      id: zip
-      uses: wzieba/ZIP-action@v1.0.0
-      with:
-        zip_file: lambda_code.zip
-        source_folder: '.'
+      run: |
+        zip -r lambda_code.zip *
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
