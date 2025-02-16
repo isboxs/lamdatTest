@@ -13,10 +13,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up Python 3.12
+    - name: Set up Python 3.13
       uses: actions/setup-python@v2
       with:
-        python-version: '3.12'
+        python-version: '3.13'
 
     - name: Install dependencies
       run: |
@@ -41,7 +41,3 @@ jobs:
     - name: Deploy Lambda
       run: |
         aws lambda update-function-code --function-name ${{ secrets.LAMBDA_FUNCTION_NAME }} --s3-bucket ${{ secrets.S3_BUCKET_NAME }} --s3-key ${{ secrets.LAMBDA_ZIP_NAME }}
-
-    - name: Output Lambda function URL
-      run: |
-        echo "Lambda URL: https://<REGION>.amazonaws.com/2015-03-31/functions/${{ secrets.LAMBDA_FUNCTION_NAME }}/invocations"
